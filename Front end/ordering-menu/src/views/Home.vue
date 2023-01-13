@@ -1,9 +1,9 @@
 <template>
   <div id="container">
-    <headbar id="headbar" />
-    <sidebar id="sidebar" />
-    <item-list id="item-list" />
-    <ordering-screen id="ordering-screen" />
+    <headbar id="headbar" class="home-element" />
+    <sidebar id="sidebar" class="home-element" />
+    <item-list id="item-list" class="home-element" />
+    <ordering-screen id="ordering-screen" class="home-element" />
   </div>
 </template>
 
@@ -38,19 +38,18 @@ export default {
     "sidebar itemList orderingScreen";
   }
   #headbar {
-    background-color: gray;
     grid-area: headbar;
   }
   #sidebar {
-    background-color: blue;
     grid-area: sidebar;
   }
   #item-list {
-    background-color: green;
     grid-area: itemList;
   }
   #ordering-screen {
-    background-color: black;
     grid-area: orderingScreen;
+  }
+  .home-element {
+    border: 1px white solid;
   }
 </style>

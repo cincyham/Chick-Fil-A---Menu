@@ -1,6 +1,6 @@
 <template>
-  <div id="container">
-      Hello
+  <div id="headbar">
+      <h1>Chick-Fil-A</h1>
   </div>
 </template>
 
@@ -11,7 +11,7 @@ export default {
 </script>
 
 <style>
-  #container {
-    background-color: yellow;
+  #headbar {
+    text-align: center;
   }
 </style>

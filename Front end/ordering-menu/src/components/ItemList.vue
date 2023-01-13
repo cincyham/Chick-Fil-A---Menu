@@ -1,5 +1,5 @@
 <template>
-  <div id="container">
+  <div id="item-list">
       Hello
   </div>
 </template>
@@ -11,7 +11,4 @@ export default {
 </script>
 
 <style>
-  #container {
-    background-color: yellow;
-  }
 </style>
