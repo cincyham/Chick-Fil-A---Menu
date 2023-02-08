@@ -4,37 +4,47 @@ import java.math.BigDecimal;
 
 public class Item {
 
-    private int itemId;
-    private String itemName;
+    private int id;
+    private String name;
+    private String picture;
     private int calories;
-    private String itemType;
+    private String type;
     private BigDecimal price;
 
     public Item() {
     }
 
-    public Item(int itemId, String itemName, int calories, String itemType, BigDecimal price) {
-        this.itemId = itemId;
-        this.itemName = itemName;
+    public Item(int itemId, String itemName, String picture, int calories, String itemType, BigDecimal price) {
+        this.id = itemId;
+        this.name = itemName;
+        this.picture = picture;
         this.calories = calories;
-        this.itemType = itemType;
+        this.type = itemType;
         this.price = price;
     }
 
-    public int getItemId() {
-        return itemId;
+    public int getId() {
+        return id;
     }
 
-    public void setItemId(int itemId) {
-        this.itemId = itemId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getItemName() {
-        return itemName;
+    public String getName() {
+        return name;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
     public int getCalories() {
@@ -45,12 +55,12 @@ public class Item {
         this.calories = calories;
     }
 
-    public String getItemType() {
-        return itemType;
+    public String getType() {
+        return type;
     }
 
-    public void setItemType(String itemType) {
-        this.itemType = itemType;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public BigDecimal getPrice() {

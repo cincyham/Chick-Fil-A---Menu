@@ -21,11 +21,11 @@ public class JdbcTransactionItemDao implements TransactionItemDao{
     @Override
     public TransactionItem getTransactionItemById(int transactionItemId) {
         String sql =
-                " SELECT transaction_item_id, " +
+                " SELECT id, " +
                         " item_id, " +
                         " transaction_id " +
                         " FROM transaction_item " +
-                        " WHERE transaction_item_id = ?;";
+                        " WHERE id = ?;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, transactionItemId);
 
         if (rowSet.next()) {
@@ -38,7 +38,7 @@ public class JdbcTransactionItemDao implements TransactionItemDao{
     public List<TransactionItem> getAllTransactionItemsByTransactionId(int transactionId) {
         List<TransactionItem> transactionItems = new ArrayList<>();
         String sql =
-                " SELECT transaction_item_id, " +
+                " SELECT id, " +
                         " item_id, " +
                         " transaction_id " +
                         " FROM transaction_item " +
@@ -59,7 +59,7 @@ public class JdbcTransactionItemDao implements TransactionItemDao{
         String sql =
                 " INSERT INTO transaction_item (item_id, transaction_id) " +
                         " VALUES (?, ?) " +
-                        " RETURNING transaction_item_id;";
+                        " RETURNING id;";
 
         List<TransactionItem> newList = new ArrayList<>();
 
@@ -73,7 +73,7 @@ public class JdbcTransactionItemDao implements TransactionItemDao{
     private TransactionItem transactionItemMapper(SqlRowSet rowset) {
         TransactionItem transactionItem = new TransactionItem();
 
-        transactionItem.setTransactionItemId(rowset.getInt("transaction_item_id"));
+        transactionItem.setId(rowset.getInt("id"));
         transactionItem.setItemId(rowset.getInt("transaction_date"));
         transactionItem.setTransactionId(rowset.getInt("transaction_id"));
 

@@ -6,8 +6,8 @@ import java.util.List;
 
 public class Transaction {
 
-    private int transactionId;
-    private Date transactionDate;
+    private int id;
+    private Date date;
     private BigDecimal total;
     private List<Item> transactionItems;
 
@@ -15,25 +15,25 @@ public class Transaction {
     }
 
     public Transaction(int transactionId, Date transactionDate, BigDecimal total) {
-        this.transactionId = transactionId;
-        this.transactionDate = transactionDate;
+        this.id = transactionId;
+        this.date = transactionDate;
         this.total = total;
     }
 
-    public int getTransactionId() {
-        return transactionId;
+    public int getId() {
+        return id;
     }
 
-    public void setTransactionId(int transactionId) {
-        this.transactionId = transactionId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public Date getTransactionDate() {
-        return transactionDate;
+    public Date getDate() {
+        return date;
     }
 
-    public void setTransactionDate(Date transactionDate) {
-        this.transactionDate = transactionDate;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public BigDecimal getTotal() {

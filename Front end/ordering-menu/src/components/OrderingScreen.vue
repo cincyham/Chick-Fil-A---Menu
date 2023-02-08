@@ -28,9 +28,8 @@ export default {
   text-align: center;
  }
  #tender-button {
-  color: red;
+  color: black;
   display: inline-block;
-  background-color: black;
   height: 50px;
   width: 100px;
  }

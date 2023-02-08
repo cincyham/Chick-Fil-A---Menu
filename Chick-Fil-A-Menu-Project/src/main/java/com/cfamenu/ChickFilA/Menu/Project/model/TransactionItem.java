@@ -2,7 +2,7 @@ package com.cfamenu.ChickFilA.Menu.Project.model;
 
 public class TransactionItem {
 
-    private int transactionItemId;
+    private int id;
     private int itemId;
     private int transactionId;
 
@@ -10,17 +10,17 @@ public class TransactionItem {
     }
 
     public TransactionItem(int transactionItemId, int itemId, int transactionId) {
-        this.transactionItemId = transactionItemId;
+        this.id = transactionItemId;
         this.itemId = itemId;
         this.transactionId = transactionId;
     }
 
-    public int getTransactionItemId() {
-        return transactionItemId;
+    public int getId() {
+        return id;
     }
 
-    public void setTransactionItemId(int transactionItemId) {
-        this.transactionItemId = transactionItemId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getItemId() {

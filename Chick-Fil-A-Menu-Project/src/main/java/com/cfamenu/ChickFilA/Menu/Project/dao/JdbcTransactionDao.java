@@ -4,7 +4,6 @@ import com.cfamenu.ChickFilA.Menu.Project.model.Transaction;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.support.GroovyWebApplicationContext;
 
 @Component
 public class JdbcTransactionDao implements TransactionDao{
@@ -18,11 +17,11 @@ public class JdbcTransactionDao implements TransactionDao{
     @Override
     public Transaction getTransactionById(int transactionId) {
         String sql =
-                " SELECT transaction_id, " +
-                        " transaction_date, " +
+                " SELECT id, " +
+                        " date, " +
                         " total " +
                         " FROM transaction " +
-                        " WHERE transaction_id = ?";
+                        " WHERE id = ?";
 
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, transactionId);
         if (rowSet.next()) {
@@ -34,11 +33,11 @@ public class JdbcTransactionDao implements TransactionDao{
     @Override
     public Transaction createTransaction(Transaction transaction) {
         String sql =
-                " INSERT INTO transaction (transaction_date, total) " +
+                " INSERT INTO transaction (date, total) " +
                         " VALUES (?, ?) " +
-                        " RETURNING transaction_id;";
+                        " RETURNING id;";
 
-        Integer transactionId = jdbcTemplate.queryForObject(sql, Integer.class, transaction.getTransactionDate(), transaction.getTotal());
+        Integer transactionId = jdbcTemplate.queryForObject(sql, Integer.class, transaction.getDate(), transaction.getTotal());
 
         return getTransactionById(transactionId);
     }
@@ -46,8 +45,8 @@ public class JdbcTransactionDao implements TransactionDao{
     private Transaction transactionMapper(SqlRowSet rowSet) {
         Transaction transaction = new Transaction();
 
-        transaction.setTransactionId(rowSet.getInt("transaction_id"));
-        transaction.setTransactionDate(rowSet.getDate("transaction_date"));
+        transaction.setId(rowSet.getInt("id"));
+        transaction.setDate(rowSet.getDate("date"));
         transaction.setTotal(rowSet.getBigDecimal("total"));
 
         return transaction;

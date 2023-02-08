@@ -22,13 +22,14 @@ public class JdbcItemDao implements ItemDao{
     public Item getItemByName(String itemName) {
 
         String sql =
-                "SELECT item_id, " +
-                        " item_name, " +
+                "SELECT id, " +
+                        " name, " +
+                        " picture, " +
                         " calories, " +
-                        " item_type, " +
+                        " type, " +
                         " price" +
                         " FROM item " +
-                        " WHERE item_name = ?;";
+                        " WHERE name = ?;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, itemName);
         if (rowSet.next()) {
             return itemMapper(rowSet);
@@ -42,10 +43,11 @@ public class JdbcItemDao implements ItemDao{
         List<Item> items = new ArrayList<>();
 
         String sql =
-                "SELECT item_id, " +
-                        " item_name, " +
+                "SELECT id, " +
+                        " name, " +
+                        " picture, " +
                         " calories, " +
-                        " item_type, " +
+                        " type, " +
                         " price" +
                         " FROM item;";
 
@@ -63,10 +65,11 @@ public class JdbcItemDao implements ItemDao{
         Item item = new Item();
 
         try {
-            item.setItemId(rowset.getInt("item_id"));
-            item.setItemName(rowset.getString("item_name"));
+            item.setId(rowset.getInt("id"));
+            item.setName(rowset.getString("name"));
+            item.setPicture(rowset.getString("picture"));
             item.setCalories(rowset.getInt("calories"));
-            item.setItemType(rowset.getString("item_type"));
+            item.setType(rowset.getString("type"));
             item.setPrice(rowset.getBigDecimal("price"));
             return item;
         } catch (Exception ignored) {}
