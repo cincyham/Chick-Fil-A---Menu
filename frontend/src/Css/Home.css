@@ -1,0 +1,26 @@
+#home {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 0.15fr 1fr 0.3fr;
+  grid-template-rows: 0.1fr 1fr;
+  grid-template-areas:
+    "headbar headbar headbar"
+    "sidebar itemList orderingScreen";
+}
+#headbar {
+  grid-area: headbar;
+}
+#sidebar {
+  grid-area: sidebar;
+}
+#item-list {
+  grid-area: itemList;
+  overflow: auto;
+}
+#ordering-screen {
+  grid-area: orderingScreen;
+}
+.home-element {
+  border: 1px white solid;
+}

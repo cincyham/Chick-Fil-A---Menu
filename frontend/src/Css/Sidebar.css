@@ -1,0 +1,15 @@
+#sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 25%;
+    padding-bottom: 25%;
+  }
+  .sidebar-element {
+    border-top: 1px brown solid;
+    border-bottom: 1px brown solid;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+  }

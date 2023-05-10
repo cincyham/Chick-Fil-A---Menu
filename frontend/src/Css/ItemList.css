@@ -1,0 +1,13 @@
+#item-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.item-div {
+  margin: 20px;
+}
+.item-picture {
+  width: 10vw;
+  cursor: pointer;
+}

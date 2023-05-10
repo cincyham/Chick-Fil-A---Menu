@@ -12,7 +12,7 @@ CREATE TABLE public.item(
 	calories int NOT NULL,
 	type varchar(30) NOT NULL,
 	price decimal NOT NULL,
-	CONSTRAINT chk_item_type CHECK (type IN ('Entree', 'Condiment', 'Drink', 'Treat'))
+	CONSTRAINT chk_item_type CHECK (type IN ('Entree', 'Condiment', 'Beverage', 'Treat'))
 );
 
 CREATE TABLE public.transaction(
@@ -41,19 +41,19 @@ INSERT INTO item (name, picture, calories, type, price) VALUES ('Grilled Nuggets
 INSERT INTO item (name, picture, calories, type, price) VALUES ('Chick-fil-A Chick-n-Strips®', 'https://www.cfacdn.com/img/order/menu/Online/Entrees/strips_3ct_PDP.png', 310, 'Entree', 4.95);
 INSERT INTO item (name, picture, calories, type, price) VALUES ('Chick-fil-A® Cool Wrap', 'https://www.cfacdn.com/img/order/menu/Online/Entrees/wrap_pdp.png', 660, 'Entree', 7.49);
 
-INSERT INTO item (name, picture, calories, type, price) VALUES ('Sweet Tea', 'https://www.cfacdn.com/img/order/menu/Online/Drinks/tea_pdp.png', 120, 'Drink', 2.09);
-INSERT INTO item (name, picture, calories, type, price) VALUES ('Unsweet Tea', 'https://www.cfacdn.com/img/order/menu/Online/Drinks/tea_pdp.png', 0, 'Drink', 2.09);
-INSERT INTO item (name, picture, calories, type, price) VALUES ('Chick-Fil-A® Lemonade', 'https://www.cfacdn.com/img/order/menu/Online/Drinks/lemonade_pdp.png', 220, 'Drink', 2.39);
-INSERT INTO item (name, picture, calories, type, price) VALUES ('Chick-Fil-A® Diet Lemonade', 'https://www.cfacdn.com/img/order/menu/Online/Drinks/lemonade_pdp.png', 50, 'Drink', 2.39);
-INSERT INTO item (name, picture, calories, type, price) VALUES ('Iced Coffee', 'https://www.cfacdn.com/img/order/menu/Online/Drinks/2022IcedCoffee_1080x1080.png', 150, 'Drink', 3.09);
-INSERT INTO item (name, picture, calories, type, price) VALUES ('DASANI® Bottled Water', 'https://www.cfacdn.com/img/order/COM/Menu_Refresh/Drinks/Drinks%20PDP/_0000s_0026_%5BFeed%5D_0006s_0014_Drinks_Dasani-Water.png', 0, 'Drink', 2.19);
-INSERT INTO item (name, picture, calories, type, price) VALUES ('Simply Orange®', 'https://www.cfacdn.com/img/order/menu/Online/Drinks/SimplyOJ_Oct19_PDP.png', 160, 'Drink', 2.89);
-INSERT INTO item (name, picture, calories, type, price) VALUES ('1%  Chocolate Milk', 'https://www.cfacdn.com/img/order/menu/Mobile/Kids%20Meals/Parent/220121_Milk_Choc_0009_1080x1080.png', 140, 'Drink', 1.69);
-INSERT INTO item (name, picture, calories, type, price) VALUES ('1% Milk', 'https://www.cfacdn.com/img/order/menu/Mobile/Kids%20Meals/Parent/220121_Milk_Reg_0009_1080x1080.png', 90, 'Drink', 1.69);
+INSERT INTO item (name, picture, calories, type, price) VALUES ('Sweet Tea', 'https://www.cfacdn.com/img/order/menu/Online/Drinks/tea_pdp.png', 120, 'Beverage', 2.09);
+INSERT INTO item (name, picture, calories, type, price) VALUES ('Unsweet Tea', 'https://www.cfacdn.com/img/order/menu/Online/Drinks/tea_pdp.png', 0, 'Beverage', 2.09);
+INSERT INTO item (name, picture, calories, type, price) VALUES ('Chick-Fil-A® Lemonade', 'https://www.cfacdn.com/img/order/menu/Online/Drinks/lemonade_pdp.png', 220, 'Beverage', 2.39);
+INSERT INTO item (name, picture, calories, type, price) VALUES ('Chick-Fil-A® Diet Lemonade', 'https://www.cfacdn.com/img/order/menu/Online/Drinks/lemonade_pdp.png', 50, 'Beverage', 2.39);
+INSERT INTO item (name, picture, calories, type, price) VALUES ('Iced Coffee', 'https://www.cfacdn.com/img/order/menu/Online/Drinks/2022IcedCoffee_1080x1080.png', 150, 'Beverage', 3.09);
+INSERT INTO item (name, picture, calories, type, price) VALUES ('DASANI® Bottled Water', 'https://www.cfacdn.com/img/order/COM/Menu_Refresh/Drinks/Drinks%20PDP/_0000s_0026_%5BFeed%5D_0006s_0014_Drinks_Dasani-Water.png', 0, 'Beverage', 2.19);
+INSERT INTO item (name, picture, calories, type, price) VALUES ('Simply Orange®', 'https://www.cfacdn.com/img/order/menu/Online/Drinks/SimplyOJ_Oct19_PDP.png', 160, 'Beverage', 2.89);
+INSERT INTO item (name, picture, calories, type, price) VALUES ('1%  Chocolate Milk', 'https://www.cfacdn.com/img/order/menu/Mobile/Kids%20Meals/Parent/220121_Milk_Choc_0009_1080x1080.png', 140, 'Beverage', 1.69);
+INSERT INTO item (name, picture, calories, type, price) VALUES ('1% Milk', 'https://www.cfacdn.com/img/order/menu/Mobile/Kids%20Meals/Parent/220121_Milk_Reg_0009_1080x1080.png', 90, 'Beverage', 1.69);
 INSERT INTO item (name, picture, calories, type, price) VALUES ('Coffee', 'https://www.cfacdn.com/img/order/menu/Online/Drinks/Dec19_Coffee_pdp.png', 0, 'Drink', 2.09);
-INSERT INTO item (name, picture, calories, type, price) VALUES ('Coca-Cola®', 'https://www.cfacdn.com/img/order/COM/Menu_Refresh/Drinks/Drinks%20PDP/_0000s_0022_Feed_Menu_0000_Drinks_Coca-cola.png', 140, 'Drink', 2.09);
-INSERT INTO item (name, picture, calories, type, price) VALUES ('Dr Pepper®', 'https://www.cfacdn.com/img/order/menu/Mobile/Beverages/Parent/DrPepper_PaperCup_straight_wet_1200x1200.png', 180, 'Drink', 2.09);
-INSERT INTO item (name, picture, calories, type, price) VALUES ('Sprite®', 'https://www.cfacdn.com/img/order/COM/Menu_Refresh/Drinks/Drinks%20PDP/_0000s_0032_%5BFeed%5D_0006s_0008_Drinks_Sprite.png', 190, 'Drink', 2.09);
+INSERT INTO item (name, picture, calories, type, price) VALUES ('Coca-Cola®', 'https://www.cfacdn.com/img/order/COM/Menu_Refresh/Drinks/Drinks%20PDP/_0000s_0022_Feed_Menu_0000_Drinks_Coca-cola.png', 140, 'Beverage', 2.09);
+INSERT INTO item (name, picture, calories, type, price) VALUES ('Dr Pepper®', 'https://www.cfacdn.com/img/order/menu/Mobile/Beverages/Parent/DrPepper_PaperCup_straight_wet_1200x1200.png', 180, 'Beverage', 2.09);
+INSERT INTO item (name, picture, calories, type, price) VALUES ('Sprite®', 'https://www.cfacdn.com/img/order/COM/Menu_Refresh/Drinks/Drinks%20PDP/_0000s_0032_%5BFeed%5D_0006s_0008_Drinks_Sprite.png', 190, 'Beverage', 2.09);
 
 
 INSERT INTO item (name, picture, calories, type, price) VALUES ('Colby Jack Cheese', 'https://www.cfacdn.com/img/order/menu/Online/Modifiers/cheese_colbyJack_PDP.png', 80, 'Condiment', 0);
