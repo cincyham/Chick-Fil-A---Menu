@@ -5,9 +5,31 @@
   justify-content: space-evenly;
 }
 .item-div {
-  margin: 20px;
+  width: 12vw;
+  height: 10vw;
+  text-align: right;
 }
 .item-picture {
-  width: 10vw;
+  max-width: 100%;
+  height: auto;
   cursor: pointer;
+}
+
+.down-arrow {
+  color: white;
+}
+
+.dropdown {
+  display: none;
+  background-color: gray;
+  color: rgb(161, 14, 14);
+  bottom: 100px;
+  max-height: 100px;
+  max-width: 150px;
+  text-align: left;
+}
+
+.down-arrow:hover + .dropdown {
+  display:inherit;
+  position: relative;
 }

@@ -8,6 +8,7 @@ function Sidebar({ ...rest }) {
   const dispatch = useDispatch();
 
   const onClick = (event) => {
+    console.log(event);
     switch(event.target.innerText) {
       case 'Entrees':
         dispatch(pageEntrees());

@@ -7,16 +7,17 @@
  }
  div#buttons {
   text-align: center;
+  display: flex;
+  flex-direction: column;
  }
  #tender-button {
   color: black;
   display: inline-block;
-  height: 50px;
-  width: 100px;
  }
 
  #clear-btn {
   cursor: pointer;
+  display: inline-block;
  }
 
  .order-item {
