@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class JdbcItemDao implements ItemDao{
                         " name, " +
                         " picture, " +
                         " calories, " +
+                        " toppings, " +
                         " type, " +
                         " price" +
                         " FROM item " +
@@ -47,6 +49,7 @@ public class JdbcItemDao implements ItemDao{
                         " name, " +
                         " picture, " +
                         " calories, " +
+                        " toppings, " +
                         " type, " +
                         " price" +
                         " FROM item;";
@@ -69,6 +72,7 @@ public class JdbcItemDao implements ItemDao{
             item.setName(rowset.getString("name"));
             item.setPicture(rowset.getString("picture"));
             item.setCalories(rowset.getInt("calories"));
+            item.setToppingsFromObject(rowset.getObject("toppings"));
             item.setType(rowset.getString("type"));
             item.setPrice(rowset.getBigDecimal("price"));
             return item;
