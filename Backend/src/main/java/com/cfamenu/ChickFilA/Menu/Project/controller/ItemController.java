@@ -32,4 +32,9 @@ public class ItemController {
 
         return itemDao.getItemByName(itemName);
     }
+
+    @RequestMapping(path = "/item", method = RequestMethod.GET)
+    public Item getItemById(@RequestBody int id) {
+        return itemDao.getItemById(id);
+    }
 }

@@ -14,10 +14,11 @@ public class Transaction {
     public Transaction() {
     }
 
-    public Transaction(int transactionId, Date transactionDate, BigDecimal total) {
+    public Transaction(int transactionId, Date transactionDate, BigDecimal total, List<Item> transactionItems) {
         this.id = transactionId;
         this.date = transactionDate;
         this.total = total;
+        this.transactionItems = transactionItems;
     }
 
     public int getId() {
@@ -42,5 +43,13 @@ public class Transaction {
 
     public void setTotal(BigDecimal total) {
         this.total = total;
+    }
+
+    public List<Item> getTransactionItems() {
+        return transactionItems;
+    }
+
+    public void setTransactionItems(List<Item> transactionItems) {
+        this.transactionItems = transactionItems;
     }
 }

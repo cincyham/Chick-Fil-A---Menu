@@ -4,14 +4,17 @@ public class TransactionItem {
 
     private int id;
     private int itemId;
+
+    private Item item;
     private int transactionId;
 
     public TransactionItem() {
     }
 
-    public TransactionItem(int transactionItemId, int itemId, int transactionId) {
+    public TransactionItem(int transactionItemId, int itemId, Item item, int transactionId) {
         this.id = transactionItemId;
         this.itemId = itemId;
+        this.item = item;
         this.transactionId = transactionId;
     }
 
@@ -27,8 +30,17 @@ public class TransactionItem {
         return itemId;
     }
 
-    public void setItemId(int itemId) {
+    public int setItemId(int itemId) {
         this.itemId = itemId;
+        return itemId;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
     }
 
     public int getTransactionId() {

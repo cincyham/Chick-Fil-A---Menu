@@ -10,4 +10,6 @@ public interface ItemDao {
     Item getItemByName(String itemName);
 
     List<Item> getAllItems();
+
+    Item getItemById(int id);
 }

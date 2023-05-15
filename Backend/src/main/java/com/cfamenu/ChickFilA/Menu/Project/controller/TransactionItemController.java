@@ -1,6 +1,7 @@
 package com.cfamenu.ChickFilA.Menu.Project.controller;
 
 import com.cfamenu.ChickFilA.Menu.Project.dao.TransactionItemDao;
+import com.cfamenu.ChickFilA.Menu.Project.model.Item;
 import com.cfamenu.ChickFilA.Menu.Project.model.TransactionItem;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,15 +25,15 @@ public class TransactionItemController {
     }
 
     @RequestMapping(path = "/transaction-items", method = RequestMethod.GET)
-    public List<TransactionItem> getTransactionItemByTransactionId(@RequestBody int transactionId){
+    public List<TransactionItem> getTransactionItemsByTransactionId(@RequestBody int transactionId){
         return transactionItemDao.getAllTransactionItemsByTransactionId(transactionId);
     }
 
     @RequestMapping(path = "/transaction-item", method = RequestMethod.POST)
-    public List<TransactionItem> createTransactionItemFromList(@RequestBody List<TransactionItem> inputList){
+    public List<TransactionItem> createTransactionItemFromList(@RequestBody List<Item> itemList, int transactionId){
         List<TransactionItem> outgoingList = new ArrayList<>();
 
-        outgoingList = transactionItemDao.createTransactionItemsFromList(inputList);
+        outgoingList = transactionItemDao.createTransactionItemsFromList(itemList, transactionId);
 
         return outgoingList;
     }

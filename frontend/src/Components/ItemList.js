@@ -2,23 +2,38 @@ import { useGetMenuQuery, addToOrder } from "../store";
 import "../Css/ItemList.css";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { GoChevronDown } from 'react-icons/go';
+import { GoChevronDown } from "react-icons/go";
 
-function ItemList({...rest}) {
+function ItemList({ ...rest }) {
   const { data: menu, menuError, isFetchingMenu } = useGetMenuQuery();
   const [items, setItems] = useState([]);
-  const currentPage = useSelector(state => state.page.page);
+  const currentPage = useSelector((state) => state.page.page);
   const dispatch = useDispatch();
 
   const onClick = (item) => {
     dispatch(addToOrder(item));
-  }
-  
+  };
+
   useEffect(() => {
     if (menu) {
       setItems(
         menu.map((item) => {
           if (item.type === currentPage) {
+            let showToppings = false;
+            if (item.toppings.length > 0) {
+              showToppings = true;
+            }
+            const toppings = (
+              <div id="toppings-div">
+                <h4 className="dropdown-toppings-title title">
+                    Ingredients:
+                  </h4>
+                  <h4 className="dropdown-topppings-items title">
+                    {item.toppings.join(", ")}
+                  </h4>
+              </div>
+              
+            )
             return (
               <div key={item.id} className="item-div">
                 <img
@@ -27,26 +42,22 @@ function ItemList({...rest}) {
                   alt={item.name}
                   onClick={() => onClick(item)}
                 />
-                <GoChevronDown size={20 } className="down-arrow" />
+                <GoChevronDown size={20} className="down-arrow" />
                 <div className="dropdown title">
-                  <h4 className="dropdown-calories">
+                  <h4 className="dropdown-calories title">
                     Calories: {item.calories}
                   </h4>
+                  {showToppings && toppings}
                 </div>
               </div>
             );
           }
-          
         })
       );
     }
   }, [menu, currentPage]);
 
-  return (
-    <div {...rest}>
-      {items}
-    </div>
-  );
+  return <div {...rest}>{items}</div>;
 }
 
 export default ItemList;

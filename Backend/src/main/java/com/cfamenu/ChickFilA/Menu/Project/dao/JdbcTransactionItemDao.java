@@ -1,6 +1,8 @@
 package com.cfamenu.ChickFilA.Menu.Project.dao;
 
+import com.cfamenu.ChickFilA.Menu.Project.model.Item;
 import com.cfamenu.ChickFilA.Menu.Project.model.TransactionItem;
+import com.cfamenu.ChickFilA.Menu.Project.controller.ItemController;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -12,6 +14,8 @@ import java.util.List;
 public class JdbcTransactionItemDao implements TransactionItemDao{
 
     private JdbcTemplate jdbcTemplate;
+
+    private ItemController itemController;
 
     public JdbcTransactionItemDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -55,7 +59,7 @@ public class JdbcTransactionItemDao implements TransactionItemDao{
     }
 
     @Override
-    public List<TransactionItem> createTransactionItemsFromList(List<TransactionItem> transactionItemList) {
+    public List<TransactionItem> createTransactionItemsFromList(List<Item> itemList, int transactionId) {
         String sql =
                 " INSERT INTO transaction_item (item_id, transaction_id) " +
                         " VALUES (?, ?) " +
@@ -63,8 +67,8 @@ public class JdbcTransactionItemDao implements TransactionItemDao{
 
         List<TransactionItem> newList = new ArrayList<>();
 
-        for (TransactionItem item : transactionItemList) {
-            Integer transactionItemId = jdbcTemplate.queryForObject(sql, Integer.class, item.getItemId(), item.getTransactionId());
+        for (Item item : itemList) {
+            Integer transactionItemId = jdbcTemplate.queryForObject(sql, Integer.class, item.getId(), transactionId);
             newList.add(getTransactionItemById(transactionItemId));
         }
         return newList;
@@ -74,7 +78,8 @@ public class JdbcTransactionItemDao implements TransactionItemDao{
         TransactionItem transactionItem = new TransactionItem();
 
         transactionItem.setId(rowset.getInt("id"));
-        transactionItem.setItemId(rowset.getInt("transaction_date"));
+        int itemId = transactionItem.setItemId(rowset.getInt("item_id"));
+        transactionItem.setItem((itemController.getItemById(itemId)));
         transactionItem.setTransactionId(rowset.getInt("transaction_id"));
 
         return transactionItem;

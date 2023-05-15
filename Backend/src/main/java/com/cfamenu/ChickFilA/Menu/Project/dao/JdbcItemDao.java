@@ -5,7 +5,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,6 +60,30 @@ public class JdbcItemDao implements ItemDao{
         }
 
         return items;
+    }
+
+    @Override
+    public Item getItemById(int id) {
+
+        Item item = new Item();
+
+        String sql =
+                "SELECT id, " +
+                        " name, " +
+                        " picture, " +
+                        " calories, " +
+                        " toppings, " +
+                        " type, " +
+                        " price" +
+                        " FROM item" +
+                        " WHERE id = ? " +
+                        "   LIMIT 1;";
+
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, id);
+        if (rowSet.next()) {
+            item = itemMapper(rowSet);
+        }
+        return item;
     }
 
 
