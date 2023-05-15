@@ -5,9 +5,12 @@ import com.cfamenu.ChickFilA.Menu.Project.model.Item;
 import com.cfamenu.ChickFilA.Menu.Project.model.Transaction;
 import com.cfamenu.ChickFilA.Menu.Project.controller.TransactionItemController;
 import com.cfamenu.ChickFilA.Menu.Project.model.TransactionItem;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -28,14 +31,16 @@ public class TransactionController {
         return transactionDao.getTransactionById(id);
     }
 
-    @RequestMapping(path ="/new-transaction", method = RequestMethod.POST)
-    public Transaction createTransaction(@RequestBody Transaction inputTransaction) {
-        Transaction transaction = transactionDao.createTransaction(inputTransaction);
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(path ="/transaction/new", method = RequestMethod.POST)
+    public Transaction createTransaction(@RequestBody Date date, BigDecimal total, List<Item> order) {
+        Transaction transaction = new Transaction(date, total, order);
+        Transaction newTransaction = transactionDao.createTransaction(transaction);
         List<Item> itemList = new ArrayList<>();
-        for (Item item : inputTransaction.getTransactionItems()) {
+        for (Item item : transaction.getTransactionItems()) {
             itemList.add(item);
         }
-        transactionItemController.createTransactionItemFromList(itemList, inputTransaction.getId());
-        return transaction;
+        transactionItemController.createTransactionItemFromList(itemList, transaction.getId());
+        return newTransaction;
     }
 }

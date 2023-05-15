@@ -18,9 +18,22 @@ const cfaMenuApi = createApi({
           };
         },
       }),
+      createTransaction: builder.mutation({
+        query: (transaction) => {
+          return {
+            url: `/transaction/new`,
+            body: {
+              date: transaction.date,
+              total: transaction.total,
+              order: transaction.order,
+            },
+            method: "POST",
+          };
+        },
+      }),
     };
   },
 });
 
-export const { useGetMenuQuery } = cfaMenuApi;
+export const { useGetMenuQuery, useCreateTransactionMutation } = cfaMenuApi;
 export { cfaMenuApi };

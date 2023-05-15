@@ -21,6 +21,12 @@ public class Transaction {
         this.transactionItems = transactionItems;
     }
 
+    public Transaction(Date date, BigDecimal total, List<Item> transactionItems) {
+        this.date = date;
+        this.total = total;
+        this.transactionItems = transactionItems;
+    }
+
     public int getId() {
         return id;
     }

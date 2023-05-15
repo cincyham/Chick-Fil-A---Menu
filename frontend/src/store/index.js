@@ -30,6 +30,6 @@ export const store = configureStore({
 
 setupListeners(store.dispatch);
 
-export { useGetMenuQuery } from "./apis/cfaMenuApi";
+export { useGetMenuQuery, useCreateTransactionMutation } from "./apis/cfaMenuApi";
 
 export { pageEntrees, pageSides, pageCondiments, pageBeverages, pageTreats, addToOrder, removeFromOrder, clearOrder };
