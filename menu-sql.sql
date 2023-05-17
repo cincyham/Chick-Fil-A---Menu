@@ -19,7 +19,8 @@ CREATE TABLE public.item(
 CREATE TABLE public.transaction(
 	id serial NOT NULL PRIMARY KEY,
 	date date NOT NULL,
-	total numeric (9,2) NOT NULL
+	total numeric (9,2) NOT NULL,
+	items json NOT NULL
 );
 
 
@@ -28,7 +29,7 @@ CREATE TABLE public.transaction_item(
 	item_id int NOT NULL,
 	transaction_id int NOT NULL,
 	CONSTRAINT fk_item_id FOREIGN KEY (item_id) REFERENCES item (id),
-	CONSTRAINT fk_transaction_id FOREIGN KEY (id) REFERENCES transaction (id)
+	CONSTRAINT fk_transaction_id FOREIGN KEY (transaction_id) REFERENCES transaction (id)
 );
 
 INSERT INTO item (name, picture, calories, toppings, type, price) VALUES ('Chick-fil-A® Chicken Sandwich', 'https://www.cfacdn.com/img/order/menu/Online/Entrees/Jul19_CFASandwich_pdp.png', 440, Array ['pickles'], 'Entree', 4.59);

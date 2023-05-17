@@ -11,5 +11,7 @@ public interface TransactionItemDao {
 
     List<TransactionItem> getAllTransactionItemsByTransactionId(int transactionId);
 
+    TransactionItem createTransactionItem(Item item, int transactionId);
+
     List<TransactionItem> createTransactionItemsFromList(List<Item> transactionItems, int transactionId);
 }

@@ -18,6 +18,14 @@ const cfaMenuApi = createApi({
           };
         },
       }),
+      getTransactions: builder.query({
+        query: () => {
+          return {
+            url: `/transactions`,
+            method: "GET",
+          };
+        },
+      }),
       createTransaction: builder.mutation({
         query: (transaction) => {
           return {
@@ -35,5 +43,5 @@ const cfaMenuApi = createApi({
   },
 });
 
-export const { useGetMenuQuery, useCreateTransactionMutation } = cfaMenuApi;
+export const { useGetMenuQuery, useGetTransactionsQuery, useCreateTransactionMutation } = cfaMenuApi;
 export { cfaMenuApi };

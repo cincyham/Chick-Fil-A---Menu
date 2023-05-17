@@ -17,8 +17,9 @@ public class JdbcTransactionItemDao implements TransactionItemDao{
 
     private ItemController itemController;
 
-    public JdbcTransactionItemDao(JdbcTemplate jdbcTemplate) {
+    public JdbcTransactionItemDao(JdbcTemplate jdbcTemplate, ItemController itemController) {
         this.jdbcTemplate = jdbcTemplate;
+        this.itemController = itemController;
     }
 
 
@@ -59,17 +60,22 @@ public class JdbcTransactionItemDao implements TransactionItemDao{
     }
 
     @Override
-    public List<TransactionItem> createTransactionItemsFromList(List<Item> itemList, int transactionId) {
+    public TransactionItem createTransactionItem(Item item, int transactionId) {
         String sql =
                 " INSERT INTO transaction_item (item_id, transaction_id) " +
                         " VALUES (?, ?) " +
                         " RETURNING id;";
+        Integer transactionItemId = jdbcTemplate.queryForObject(sql, Integer.class, item.getId(), transactionId);
+        return getTransactionItemById(transactionItemId);
+    }
 
+    @Override
+    public List<TransactionItem> createTransactionItemsFromList(List<Item> itemList, int transactionId) {
         List<TransactionItem> newList = new ArrayList<>();
 
         for (Item item : itemList) {
-            Integer transactionItemId = jdbcTemplate.queryForObject(sql, Integer.class, item.getId(), transactionId);
-            newList.add(getTransactionItemById(transactionItemId));
+            TransactionItem transactionItem = createTransactionItem(item, transactionId);
+            newList.add(transactionItem);
         }
         return newList;
     }

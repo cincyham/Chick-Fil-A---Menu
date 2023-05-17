@@ -1,30 +1,31 @@
 package com.cfamenu.ChickFilA.Menu.Project.model;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.math.RoundingMode;
+import java.time.LocalDate;
 import java.util.List;
 
 public class Transaction {
 
     private int id;
-    private Date date;
+    private LocalDate date;
     private BigDecimal total;
-    private List<Item> transactionItems;
+    private List<Item> order;
 
     public Transaction() {
     }
 
-    public Transaction(int transactionId, Date transactionDate, BigDecimal total, List<Item> transactionItems) {
+    public Transaction(int transactionId, LocalDate transactionDate, BigDecimal total, List<Item> order) {
         this.id = transactionId;
         this.date = transactionDate;
         this.total = total;
-        this.transactionItems = transactionItems;
+        this.order = order;
     }
 
-    public Transaction(Date date, BigDecimal total, List<Item> transactionItems) {
+    public Transaction(LocalDate date, BigDecimal total, List<Item> order) {
         this.date = date;
         this.total = total;
-        this.transactionItems = transactionItems;
+        this.order = order;
     }
 
     public int getId() {
@@ -35,27 +36,37 @@ public class Transaction {
         this.id = id;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
     public BigDecimal getTotal() {
-        return total;
+        return total.setScale(2, RoundingMode.HALF_UP);
     }
 
     public void setTotal(BigDecimal total) {
         this.total = total;
     }
 
-    public List<Item> getTransactionItems() {
-        return transactionItems;
+    public List<Item> getOrder() {
+        return order;
     }
 
-    public void setTransactionItems(List<Item> transactionItems) {
-        this.transactionItems = transactionItems;
+    public void setOrder(List<Item> transactionItems) {
+        this.order = transactionItems;
+    }
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "id=" + getId() +
+                ", date=" + getDate() +
+                ", total=" + getTotal() +
+                ", order=" + getOrder() +
+                '}';
     }
 }

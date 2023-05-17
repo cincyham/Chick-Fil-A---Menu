@@ -1,17 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
 import "../Css/OrderingScreen.css";
-import { removeFromOrder, clearOrder, useCreateTransactionMutation } from "../store";
-import { useState } from "react";
+import {
+  removeFromOrder,
+  clearOrder,
+  useCreateTransactionMutation,
+} from "../store";
+
+import { Link } from "react-router-dom";
 
 function OrderingScreen({ ...rest }) {
   const order = useSelector((state) => state.transaction.order);
   const dispatch = useDispatch();
   let total = 0;
   const date = new Date();
-  const [createTransaction, results] =
-    useCreateTransactionMutation();
-
-  console.log(date);
+  const [createTransaction, results] = useCreateTransactionMutation();
 
   const clearOrderClick = () => {
     dispatch(clearOrder());
@@ -22,13 +24,15 @@ function OrderingScreen({ ...rest }) {
   };
 
   const onTenderClick = () => {
+    const date = new Date();
     const transaction = {
-      date: new Date(),
+      date,
       total,
       order,
     };
     createTransaction(transaction);
-  }
+    clearOrderClick();
+  };
 
   let orderItems;
 
@@ -49,10 +53,17 @@ function OrderingScreen({ ...rest }) {
     <div {...rest}>
       <div id="order-div">{orderItems}</div>
       <div id="buttons" className="ordering-screen-element">
-        <h2 onClick={onTenderClick} id="tender-button">Tender: {total.toFixed(2)}</h2>
-        <h4 onClick={clearOrderClick} id="clear-btn">
-          Clear Order
-        </h4>
+        <h2 onClick={onTenderClick} id="tender-button">
+          Tender: {total.toFixed(2)}
+        </h2>
+        <div id="bottom-btns">
+          <h4 onClick={clearOrderClick} id="clear-btn">
+            Clear Order
+          </h4>
+          <Link className="link" to="/transactions">
+            <h4 id="transactions-btn">Transactions</h4>
+          </Link>
+        </div>
       </div>
     </div>
   );

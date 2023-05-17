@@ -1,0 +1,37 @@
+#transactions {
+    height: 100%;
+    width: 100%;
+    color: rgb(235, 235, 202);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+#home-btn {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    color: red;
+}
+
+.transactions-element {
+    background-color: #046ab4;
+}
+
+#transaction-list {
+    height: 60vh;
+    width: 20vw;
+}
+
+.ind-transaction {
+    display: flex;
+    gap: 10px;
+    cursor: pointer;
+}
+
+#transactions-order-div {
+    height: 70vh;
+    width: 25vw;
+    color: black;
+}
