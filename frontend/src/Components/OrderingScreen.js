@@ -1,26 +1,21 @@
-import { useDispatch, useSelector } from "react-redux";
 import "../Css/OrderingScreen.css";
 import {
-  removeFromOrder,
-  clearOrder,
   useCreateTransactionMutation,
 } from "../store";
 
 import { Link } from "react-router-dom";
 
-function OrderingScreen({ ...rest }) {
-  const order = useSelector((state) => state.transaction.order);
-  const dispatch = useDispatch();
+function OrderingScreen({ order, orderingScreenOrderFunctions, ...rest }) {
   let total = 0;
   const date = new Date();
   const [createTransaction, results] = useCreateTransactionMutation();
 
   const clearOrderClick = () => {
-    dispatch(clearOrder());
+    orderingScreenOrderFunctions.clearOrder();
   };
 
   const orderItemClick = (index) => {
-    dispatch(removeFromOrder(index));
+    orderingScreenOrderFunctions.removeFromOrder(index);
   };
 
   const onTenderClick = () => {

@@ -1,28 +1,26 @@
 import "../Css/Sidebar.css";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { pageEntrees, pageSides, pageCondiments, pageBeverages, pageTreats } from '../store';
 
-function Sidebar({ ...rest }) {
+function Sidebar({ pageFunctions, ...rest }) {
 
-  const dispatch = useDispatch();
+  const { pageEntree, pageSide, pageCondiment, pageBeverage, pageTreat } =
+    pageFunctions;
 
   const onClick = (event) => {
     switch(event.target.innerText) {
       case 'Entrees':
-        dispatch(pageEntrees());
+        pageEntree();
       break;
       case 'Sides':
-        dispatch(pageSides());
+        pageSide();
       break;
       case 'Condiments':
-        dispatch(pageCondiments())
+        pageCondiment();
       break;
       case 'Beverages':
-        dispatch(pageBeverages())
+        pageBeverage();
       break;
       case 'Treats':
-        dispatch(pageTreats())
+        pageTreat();
       break;
     }
   }

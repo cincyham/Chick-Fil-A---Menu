@@ -71,8 +71,6 @@ public class JdbcTransactionDao implements TransactionDao{
 
         String json = objectMapper.writeValueAsString(transaction.getOrder());
 
-        System.out.println("json: " + json);
-
         Integer transactionId = jdbcTemplate.queryForObject(sql, Integer.class, transaction.getDate(), transaction.getTotal(), json);
 
         return getTransactionById(transactionId);

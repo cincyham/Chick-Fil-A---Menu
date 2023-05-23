@@ -1,24 +1,21 @@
-import { useGetMenuQuery, addToOrder } from "../store";
+import { useGetMenuQuery } from "../store";
 import "../Css/ItemList.css";
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { GoChevronDown } from "react-icons/go";
 
-function ItemList({ ...rest }) {
+function ItemList({ page, addToOrder, ...rest }) {
   const { data: menu, menuError, isFetchingMenu } = useGetMenuQuery();
   const [items, setItems] = useState([]);
-  const currentPage = useSelector((state) => state.page.page);
-  const dispatch = useDispatch();
 
   const onClick = (item) => {
-    dispatch(addToOrder(item));
+    addToOrder(item);
   };
-
+  
   useEffect(() => {
     if (menu) {
       setItems(
         menu.map((item) => {
-          if (item.type === currentPage) {
+          if (item.type === page) {
             let showToppings = false;
             if (item.toppings.length > 0) {
               showToppings = true;
@@ -55,7 +52,7 @@ function ItemList({ ...rest }) {
         })
       );
     }
-  }, [menu, currentPage]);
+  }, [menu, page]);
 
   return <div {...rest}>{items}</div>;
 }
